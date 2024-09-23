@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  height: 300px;
+  width: 700px;
+  border: 2px solid pink;
+  border-radius: 3px;
+ 
+}
