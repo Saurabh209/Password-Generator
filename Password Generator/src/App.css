@@ -9,9 +9,55 @@ body{
 }
 
 .container{
-  height: 300px;
-  width: 700px;
+  background-color: rgb(60, 60, 60);
+  height: 115px;
+  width: 550px;
   border: 2px solid pink;
   border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
  
+}
+
+.upperContainer{
+  height: 80px;
+  width: 100%;
+  /* border: 1px solid rgb(255, 255, 255); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.lowerContainer{
+  height: 30px;
+  width: 100%;
+  /* border: 1px solid rgb(255, 255, 255); */
+  display: flex;
+  justify-content: space-around;
+}
+
+.left-lowerContainer{
+  width: 230px;
+  /* border: 2px solid white; */
+  display: flex;
+  align-items: center;
+}
+.right-lowerContainer{
+  /* border: 2px solid pink; */
+  display: flex;
+  
+  align-items: center;
+}
+
+.passwordField{
+  text-decoration: none;
+  height:50%;
+  width: 70%;
+  border-radius: 5px;
+}
+.copyButton{
+  height: 50%;
+  width: 20%;
 }
