@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect,useRef } from 'react'
 
 import './App.css'
 
@@ -8,32 +8,58 @@ function App() {
   const [specialChar, setspecialChar] = useState(false)
   const [Length, setLength] = useState(8)
 
-  function fun(){
+
+
+
+  function myFun(){
     let pass = ""
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
-    if(setNum) str+="0123456789";
-    if(setspecialChar) str+="!@#$%^&*()_+{}[]~";
+    if(Num==true){
+      str+="0123456789"
+    } 
+    if(specialChar==true){
+      str+="!@#$%^&*_+~"
+    } ;
     
-    for(let i=1; i<=Array.length;i++){
+    for(let i=1; i<=Length;i++){
       let char = Math.floor(Math.random()*str.length+1)
-      pass = str.charAt(char)
+      pass += str.charAt(char)
      }
      setPassword(pass)
   }
 
-  const passwordGenerator=useCallback(fun,[Length,Num,specialChar,setPassword])
+  function copyToBoard(){
+
+    window.navigator.clipboard.writeText(Password)
+  }
+
+
+  const passwordGenerator=useCallback(myFun,[Length,Num,specialChar,setPassword])
+
+
+  const copyPasswordToBoard = useCallback(copyToBoard,[Password])
+
+
+  useEffect(()=>{passwordGenerator()},[Length,Num,specialChar,passwordGenerator])
   return (
     <>
-    <h3>True False switch case bnana hai using function</h3>
-      <div class="container">
-      <div class = "upperContainer">
-        <input type="text" placeholder='Password' class="passwordField"></input>
-        <button class = "copyButton">Copy</button>
+    
+      <div className="container">
+      <div className = "upperContainer">
+        <input type="text" 
+        placeholder='Password' 
+        className="passwordField" 
+        value={Password} 
+        readOnly
+      
+
+        />
+        <button onClick={copyPasswordToBoard} className = "copyButton">Copy</button>
       </div>
      
-      <div class = "lowerContainer">
-       <div class = "left-lowerContainer">
+      <div className = "lowerContainer">
+       <div className = "left-lowerContainer">
        <input 
         type='range' 
         className = "cursor-pointer" 
@@ -45,22 +71,25 @@ function App() {
         </input>
         <label>Length: {Length}</label>
        </div>
-       <div class = "right-lowerContainer">
+       <div className = "right-lowerContainer">
        <input 
        type='checkbox'
        id='chbx1'
        onChange={()=>{
         setNum((prev)=>!prev)}}
         />
-         <label for="chbx1">Number</label>
+         <label htmlFor="chbx1">Number</label>
 
          <input 
        type='checkbox'
        id='chbx2'
        onChange={()=>{
         setspecialChar((prev)=>!prev)}}
+        
         />
-         <label for="chbx2">specialCharacter</label>
+         <label htmlFor="chbx2">specialCharacter</label>
+        
+
        </div>
       </div>
       </div>
